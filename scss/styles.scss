@@ -3,22 +3,59 @@ $primary-color: #3498db;
 $secondary-color: #2ecc71;
 $font-family: 'Arial, sans-serif';
 
+// カラーマップの定義
+$button-colors: (
+  primary: $primary-color,
+  secondary: $secondary-color,
+  accent: #e74c3c
+);
+
+// テーマ設定
+$theme: dark;
+
+// プレースホルダーセレクタ定義
+%button-base {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+%container {
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
 // Global Styles
 body {
   font-family: $font-family;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+
+  @if $theme == dark {
+    body {
+      background-color: #333;
+      color: white;
+    }
+    header, footer {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
 }
 
 header {
   background-color: $primary-color;
   padding: 1rem;
+
   nav ul {
     list-style: none;
     display: flex;
     justify-content: space-around;
     padding: 0;
+    
     li a {
       color: white;
       text-decoration: none;
@@ -35,66 +72,80 @@ header {
   padding: 4rem 0;
   background-color: $secondary-color;
   color: white;
-  .btn {
-    background-color: white;
-    color: $secondary-color;
-    padding: 0.5rem 1rem;
-    border: none;
-    cursor: pointer;
-    &:hover {
-      background-color: #ddd;
+
+  @each $name, $color in $button-colors {
+    .btn-#{$name} {
+      @extend %button-base;
+      background-color: $color;
+      color: white;
+
+      &:hover {
+        background-color: darken($color, 10%);
+      }
     }
   }
 }
 
 // Project Section
 .projects {
-  padding: 2rem;
+  @extend %container;  // 共通のコンテナスタイルを継承
+
   .project-list {
     display: flex;
     justify-content: space-around;
-  }
+    gap: 20px;  // カードの間隔を調整
+  }  
+
   .project {
     background-color: white;
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 30%;
-    .btn {
-      background-color: $primary-color;
-      color: white;
-      padding: 0.5rem;
-      text-decoration: none;
-      &:hover {
-        background-color: darken($primary-color, 10%);
+
+    @for $i from 1 through 3 {
+      .col-#{$i} {
+        width: calc(100% / 3);  // ここで3分割して幅を設定
       }
     }
+  }
+
+  .project a {
+    color: white;
+    background-color: $primary-color;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
   }
 }
 
 // Contact Form
 .contact-form {
-  padding: 2rem;
+  @extend %container;
+
   form {
     display: flex;
     flex-direction: column;
     max-width: 600px;
-    margin: 0 auto;
+    
     label, input, textarea {
       margin-bottom: 1rem;
       width: 100%;
     }
+
     input, textarea {
       padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    .btn {
+
+    .btn-primary {
+      @extend %button-base;
       background-color: $primary-color;
       color: white;
-      padding: 0.5rem;
-      border: none;
-      cursor: pointer;
+
       &:hover {
         background-color: darken($primary-color, 10%);
       }
