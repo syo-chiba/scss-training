@@ -1,0 +1,15 @@
+// _variables.scss
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$accent-color: #e74c3c;
+$font-family: 'Arial, sans-serif';
+
+// カラーマップの定義
+$button-colors: (
+  primary: $primary-color,
+  secondary: $secondary-color,
+  accent: $accent-color
+);
+
+// テーマ設定
+$theme: dark;

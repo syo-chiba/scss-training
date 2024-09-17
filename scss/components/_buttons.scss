@@ -7,20 +7,14 @@
   text-decoration: none;
 }
 
-.btn-primary {
-  @extend %button-base;
-  background-color: #3498db;
+@each $name, $color in $button-colors {
+  .btn-#{$name} {
+    @extend %button-base;
+    background-color: $color;
+    color: white;
 
-  &:hover {
-    background-color: #217dbb;
-  }
-}
-
-.btn-secondary {
-  @extend %button-base;
-  background-color: #2ecc71;
-
-  &:hover {
-    background-color: #25a25a;
+    &:hover {
+      background-color: darken($color, 10%);
+    }
   }
 }

@@ -1,7 +1,9 @@
 // styles.scss
-@import 'base/reset';
+@import 'base/variables';  // 変数ファイルを最初にインポート
 @import 'base/typography';
 @import 'components/buttons';
 @import 'components/forms';
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/hero';     // 追加
+@import 'layout/projects'; // 追加

@@ -1,0 +1,19 @@
+// _hero.scss
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+  background-color: $secondary-color;
+  color: white;
+
+  @each $name, $color in $button-colors {
+    .btn-#{$name} {
+      @extend %button-base;
+      background-color: $color;
+      color: white;
+
+      &:hover {
+        background-color: darken($color, 10%);
+      }
+    }
+  }
+}
