@@ -1,0 +1,26 @@
+// _buttons.scss
+%button-base {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  @extend %button-base;
+  background-color: #3498db;
+
+  &:hover {
+    background-color: #217dbb;
+  }
+}
+
+.btn-secondary {
+  @extend %button-base;
+  background-color: #2ecc71;
+
+  &:hover {
+    background-color: #25a25a;
+  }
+}
